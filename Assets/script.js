@@ -1,17 +1,15 @@
+// utility function to select an element based on tag
 var qs = function(tag){
     return document.querySelector(tag);
 };
 
+// add all the elements that we will be interacting with
 var quiz = document.getElementById("quiz");
-
 var timerEl = qs(".timer-count");
-
 var timeLeft = 120;
 var interval;
 var correct = 0;
 var wrong = 0;
-
-
 var questions = [
     {
         title: "Which character(s) means strict quality?",
@@ -99,11 +97,14 @@ var questions = [
     }
 ]
 
+
 var currentQuestion = 0;
 var state = {
     
 }
 
+
+// Start the functions that will run the logic of the page
 function homePage(){
     quiz.innerHTML = `
         <h1> Coding Quiz! </h1>
@@ -117,6 +118,8 @@ function homePage(){
     })
 }
 
+
+// Code a timer
 var startTimer = function() {
     interval = setInterval(function(){
         timeLeft--;
@@ -127,7 +130,7 @@ var startTimer = function() {
     }, 1000)
 }
 
-
+// Add the questions & answers for the user to answer. The 3rd answer will be the correct one for now
 function questionPage(question) {
     quiz.innerHTML = `
         <h1>${question.title}</h1>
@@ -139,15 +142,18 @@ function questionPage(question) {
         </ul>
     `
     document.getElementById('answerOne').addEventListener('click', function(event){
+        // Let them know if they got it right & make the correct counter go up
         if (event.currentTarget.dataset.correct === "true"){
             alert('Nice work!')
             correct++;
+        // Let them know if they got it wrong & make the wrong counter go up
         } else {
             alert('False!')
             wrong++;
             // Take off time!
             timeLeft = timeLeft - 30;
         }
+        // Make the page change to the next question, add logic if the quiz is done
         currentQuestion++
         if (questions.length === currentQuestion){
             gameOver();
@@ -157,14 +163,17 @@ function questionPage(question) {
 
     document.getElementById('answerTwo').addEventListener('click', function(event){
         if (event.currentTarget.dataset.correct === "true"){
+        // Let them know if they got it right & make the correct counter go up
             alert('Nice work!')
             correct++;
         } else {
+        // Let them know if they got it wrong & make the wrong counter go up
             alert('False!')
             wrong++;
             // Take off time!
             timeLeft = timeLeft -30;
         }
+        // Make the page change to the next question, add logic if the quiz is done
         currentQuestion++
         if (questions.length === currentQuestion){
             gameOver();
@@ -174,14 +183,17 @@ function questionPage(question) {
 
     document.getElementById('answerThree').addEventListener('click', function(event){
         if (event.currentTarget.dataset.correct === "true"){
+        // Let them know if they got it right & make the correct counter go up
             alert('Nice work!')
             correct++;
+        // Let them know if they got it wrong & make the wrong counter go up
         } else {
             alert('False!')
             wrong++;
             // Take off time!
             timeLeft = timeLeft - 30;
         }
+        // Make the page change to the next question, add logic if the quiz is done
         currentQuestion++
         if (questions.length === currentQuestion){
             gameOver();
@@ -191,14 +203,17 @@ function questionPage(question) {
 
     document.getElementById('answerFour').addEventListener('click', function(event){
         if (event.currentTarget.dataset.correct === "true"){
+        // Let them know if they got it right & make the correct counter go up
             alert('Nice work!')
             correct++;
+        // Let them know if they got it wrong & make the wrong counter go up
         } else {
             alert('False!')
             wrong++;
             // Take off time!
             timeLeft = timeLeft - 30;
         }
+        // Make the page change to the next question, add logic if the quiz is done
         currentQuestion++
         if (questions.length === currentQuestion){
             gameOver();
@@ -212,6 +227,9 @@ function questionPage(question) {
     // }
 }
 
+
+// If the timer runs out or the user answers the last question, run a function that stops the timer, shows them how many are correct/wrong
+// Lets them add their initials and lets them record it in local storage
 function gameOver() {
     // stop timer
     clearInterval(interval);
@@ -230,5 +248,8 @@ function gameOver() {
         </form>
     `
 }
+
+
+// Write a function for localStorage for the correct/wrong & the initals of the user.
 
 homePage()
