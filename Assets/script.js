@@ -7,6 +7,9 @@ var quiz = document.getElementById("quiz");
 var timerEl = qs(".timer-count");
 
 var timeLeft = 120;
+var interval;
+var correct = 0;
+var wrong = 0;
 
 
 var questions = [
@@ -138,42 +141,63 @@ function questionPage(question) {
     document.getElementById('answerOne').addEventListener('click', function(event){
         if (event.currentTarget.dataset.correct === "true"){
             alert('Nice work!')
+            correct++;
         } else {
             alert('False!')
+            wrong++;
             // Take off time!
+            timeLeft = timeLeft - 30;
         }
         currentQuestion++
+        if (questions.length === currentQuestion){
+            gameOver();
+        }
         questionPage(questions[currentQuestion])
     })
 
     document.getElementById('answerTwo').addEventListener('click', function(event){
         if (event.currentTarget.dataset.correct === "true"){
             alert('Nice work!')
+            correct++;
         } else {
             alert('False!')
+            wrong++;
             // Take off time!
+            timeLeft = timeLeft -30;
         }
         currentQuestion++
+        if (questions.length === currentQuestion){
+            gameOver();
+        }
         questionPage(questions[currentQuestion])
     })
 
     document.getElementById('answerThree').addEventListener('click', function(event){
         if (event.currentTarget.dataset.correct === "true"){
             alert('Nice work!')
+            correct++;
         } else {
             alert('False!')
+            wrong++;
             // Take off time!
+            timeLeft = timeLeft - 30;
         }
         currentQuestion++
+        if (questions.length === currentQuestion){
+            gameOver();
+        }
         questionPage(questions[currentQuestion])
     })
 
     document.getElementById('answerFour').addEventListener('click', function(event){
         if (event.currentTarget.dataset.correct === "true"){
             alert('Nice work!')
+            correct++;
         } else {
             alert('False!')
+            wrong++;
             // Take off time!
+            timeLeft = timeLeft - 30;
         }
         currentQuestion++
         if (questions.length === currentQuestion){
@@ -189,10 +213,14 @@ function questionPage(question) {
 }
 
 function gameOver() {
+    // stop timer
+    clearInterval(interval);
     quiz.innerHTML = `
         <h1>Quiz Complete!</h1>
         <form>
             <div>
+            <h3 class='correct'>Correct: ${correct}</h3>
+            <h3 class='wrong'>Wrong: ${wrong}</h3>
                 <label for="example">Enter your initials!</label>
                 <input id="example" type="text" name="text" />
             </div>
