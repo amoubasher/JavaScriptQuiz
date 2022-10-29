@@ -10,6 +10,7 @@ var timeLeft = 120;
 var interval;
 var correct = 0;
 var wrong = 0;
+var initial = "";
 var questions = [
     {
         title: "Which character(s) means strict quality?",
@@ -97,12 +98,22 @@ var questions = [
     }
 ]
 
-
+// make the first question in the array the question, and then go ++ from there to the end
 var currentQuestion = 0;
-var state = {
-    
+
+
+// Write a function for localStorage for the correct/wrong & the initials of the user.
+var syncLocalStorage = function(){
+    localStorage.setItem("correct",correct);
+    localStorage.setItem("wrong", wrong);
+    localStorage.setItem("initial", initial);
 }
 
+var updateCorrectWrong = function(){
+    correct = localStorage.getItem("correct");
+    wrong = localStorage.getItem("wrong")
+    initial = localStorage.getItem("initial")
+}
 
 // Start the functions that will run the logic of the page
 function homePage(){
@@ -240,16 +251,21 @@ function gameOver() {
             <h3 class='correct'>Correct: ${correct}</h3>
             <h3 class='wrong'>Wrong: ${wrong}</h3>
                 <label for="example">Enter your initials!</label>
-                <input id="example" type="text" name="text" />
+                <input id="initial" type="text" name="initial" />
             </div>
             <div>
                 <input type="submit" value="Send" />
             </div>
         </form>
     `
+    syncLocalStorage();
+    updateCorrectWrong;
 }
 
 
-// Write a function for localStorage for the correct/wrong & the initals of the user.
 
 homePage()
+
+
+
+// ASK TUTOR WHERE TO ADD THE INITIALS, HOW TO DO A CSS (WHERE TO ADD THE CLASSES AND IF YOU CAN JUST DIRECTLY EFFECT A VAR), 
