@@ -168,8 +168,9 @@ function questionPage(question) {
         currentQuestion++
         if (questions.length === currentQuestion){
             gameOver();
-        }
+        } else {
         questionPage(questions[currentQuestion])
+        }
     })
 
     document.getElementById('answerTwo').addEventListener('click', function(event){
@@ -188,8 +189,9 @@ function questionPage(question) {
         currentQuestion++
         if (questions.length === currentQuestion){
             gameOver();
-        }
+        } else {
         questionPage(questions[currentQuestion])
+        }
     })
 
     document.getElementById('answerThree').addEventListener('click', function(event){
@@ -208,8 +210,9 @@ function questionPage(question) {
         currentQuestion++
         if (questions.length === currentQuestion){
             gameOver();
-        }
+        } else {
         questionPage(questions[currentQuestion])
+        }
     })
 
     document.getElementById('answerFour').addEventListener('click', function(event){
@@ -228,8 +231,9 @@ function questionPage(question) {
         currentQuestion++
         if (questions.length === currentQuestion){
             gameOver();
-        }
+        } else {
         questionPage(questions[currentQuestion])
+        }
     })
 
     // currentQuestion++
@@ -245,21 +249,27 @@ function gameOver() {
     // stop timer
     clearInterval(interval);
     quiz.innerHTML = `
-        <h1>Quiz Complete!</h1>
-        <form>
-            <div>
-            <h3 class='correct'>Correct: ${correct}</h3>
-            <h3 class='wrong'>Wrong: ${wrong}</h3>
-                <label for="example">Enter your initials!</label>
-                <input id="initial" type="text" name="initial" />
-            </div>
-            <div>
-                <input type="submit" value="Send" />
-            </div>
-        </form>
+    <h1>Quiz Complete!</h1>
+    <form id="formId">    
+    <div>
+    <h3 class='correct'>Correct: ${correct}</h3>
+    <h3 class='wrong'>Wrong: ${wrong}</h3>
+    <label for="example">Enter your initials!</label>
+    <input id="initial" type="text" name="initial" />
+    </div>
+    <div>
+    <input type="submit" value="Send" />
+    </div>
+    </form>
     `
-    syncLocalStorage();
-    updateCorrectWrong;
+    document.getElementById("formId").addEventListener('submit', function(event){
+        event.preventDefault();
+        initial = document.getElementById("initial").value;
+        alert(initial);
+        syncLocalStorage();
+        updateCorrectWrong();
+        location.replace("index.html")
+    })
 }
 
 
