@@ -13,7 +13,7 @@ var wrong = 0;
 var initial = "";
 var questions = [
     {
-        title: "Which character(s) means strict quality?",
+        title: "Which character(s) means strict equality?",
         answers: [
             {
                 answer: "=",
@@ -265,7 +265,6 @@ function gameOver() {
     document.getElementById("formId").addEventListener('submit', function(event){
         event.preventDefault();
         initial = document.getElementById("initial").value;
-        alert(initial);
         syncLocalStorage();
         updateCorrectWrong();
         location.replace("index.html")
@@ -275,7 +274,3 @@ function gameOver() {
 
 
 homePage()
-
-
-
-// ASK TUTOR WHERE TO ADD THE INITIALS, HOW TO DO A CSS (WHERE TO ADD THE CLASSES AND IF YOU CAN JUST DIRECTLY EFFECT A VAR), 
