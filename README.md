@@ -9,3 +9,4 @@ will deduct time, and it will allow the user to save their score to local memory
 I would like to improve upon what I have made, especially in the styles. After we learn a little more of bootstrap I will come back and improve it.
 Overall, this was a very simple challenge but it took some time to get in the groove of things. I have attached the screenshot and link to this README.
 
+![image](https://user-images.githubusercontent.com/68880379/199803024-573b8f40-56cb-4a83-8201-63c16086faf8.png)
